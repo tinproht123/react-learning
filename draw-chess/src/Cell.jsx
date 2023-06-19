@@ -1,13 +1,17 @@
 /* eslint-disable react/prop-types */
-const Cell = ({ row, rowIndex }) => {
+const Cell = ({ row, rowIndex, colors }) => {
+  const { colorOdd, colorEven } = colors;
+
   return (
     <div className="row">
       {row.map((_, colIndex) => (
         <div
-          className={`box ${
-            (rowIndex + colIndex) % 2 == 0 ? "white" : "black"
-          }`}
+          className="box"
           key={colIndex}
+          style={{
+            backgroundColor:
+              (rowIndex + colIndex) % 2 == 0 ? colorEven : colorOdd,
+          }}
         ></div>
       ))}
     </div>

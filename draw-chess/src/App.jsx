@@ -5,8 +5,12 @@ import Cell from "./Cell";
 function App() {
   const [size, setSize] = useState(0);
   const [chess, setChess] = useState([]);
+  const [colors, setColors] = useState({
+    colorOdd: "#000000",
+    colorEven: "#ffffff",
+  });
 
-  console.log(useState());
+  const { colorOdd, colorEven } = colors;
 
   const generateChess = () => {
     const result = [];
@@ -16,12 +20,17 @@ function App() {
     }
 
     setChess(result);
-    console.log(size);
+  };
+
+  const swapColor = () => {
+    let tempColorOdd = colorOdd;
+    let tempColorEven = colorEven;
+    setColors({ colorOdd: tempColorEven, colorEven: tempColorOdd });
   };
 
   return (
     <div>
-      <div>
+      <div style={{ marginBottom: "10px" }}>
         <input
           type="number"
           min="0"
@@ -31,21 +40,48 @@ function App() {
         <button onClick={generateChess}>Draw</button>
       </div>
       <div>
-        <div>
+        <div style={{ marginBottom: "5px" }}>
           <label htmlFor="odd-cell-color">Odd cell color: </label>
-          <input id="odd-cell-color" type="color" />
+          <input
+            id="odd-cell-color"
+            type="color"
+            value={colorOdd}
+            onChange={(e) =>
+              setColors({
+                colorOdd: e.target.value,
+                colorEven,
+              })
+            }
+          />
         </div>
-        <div>
+        <div style={{ marginBottom: "5px" }}>
           <label htmlFor="odd-cell-color">Even cell color: </label>
-          <input id="even-cell-color" type="color" />
+          <input
+            id="even-cell-color"
+            type="color"
+            value={colorEven}
+            onChange={(e) =>
+              setColors({
+                colorEven: e.target.value,
+                colorOdd,
+              })
+            }
+          />
         </div>
-        <button>Paint Color</button>
+        <p style={{ fontSize: "12px", margin: "20px 0 20px 0" }}>
+          Click on chess board to swap color between cell
+        </p>
       </div>
 
-      <div style={{ marginTop: "50px" }}>
+      <div style={{ marginTop: "50px" }} onClick={swapColor}>
         {chess.length > 0 &&
           chess.map((row, rowIndex) => (
-            <Cell key={rowIndex} row={row} rowIndex={rowIndex} />
+            <Cell
+              key={rowIndex}
+              row={row}
+              rowIndex={rowIndex}
+              colors={colors}
+            />
           ))}
       </div>
     </div>
