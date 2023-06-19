@@ -1,0 +1,14 @@
+{
+  "todos": [
+    {
+      "id": "234002828524",
+      "name": "Go to school",
+      "remember": true
+    },
+    {
+      "id": "234002868424",
+      "name": "Learning React",
+      "remember": false
+    }
+  ]
+}
