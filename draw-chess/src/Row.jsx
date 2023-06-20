@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-const Cell = ({ row, rowIndex, colors }) => {
+const Row = ({ row, rowIndex, colors }) => {
   const { colorOdd, colorEven } = colors;
 
   return (
@@ -17,4 +17,4 @@ const Cell = ({ row, rowIndex, colors }) => {
     </div>
   );
 };
-export default Cell;
+export default Row;

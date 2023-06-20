@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import Cell from "./Cell";
+import Row from "./Row";
 
 function App() {
   const [size, setSize] = useState(0);
@@ -15,7 +15,7 @@ function App() {
   const generateChess = () => {
     const result = [];
     for (let i = 0; i < size; i++) {
-      const row = Array.from({ length: size, value: 0 });
+      const row = Array.from({ length: size });
       result.push(row);
     }
 
@@ -76,7 +76,7 @@ function App() {
       <div style={{ marginTop: "50px" }} onClick={swapColor}>
         {chess.length > 0 &&
           chess.map((row, rowIndex) => (
-            <Cell
+            <Row
               key={rowIndex}
               row={row}
               rowIndex={rowIndex}

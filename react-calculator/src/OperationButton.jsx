@@ -1,10 +1,11 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+import { ACTIONS } from "./App";
 
 const OperationButton = ({ dispatch, operation }) => {
   return (
     <button
       onClick={() =>
-        dispatch({ type: CHOOSE_OPERATION, payload: { operation } })
+        dispatch({ type: ACTIONS.CHOOSE_OPERATION, payload: { operation } })
       }
     >
       {operation}
