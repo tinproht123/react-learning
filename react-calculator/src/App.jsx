@@ -15,6 +15,7 @@ export const ACTIONS = {
 const reducer = (state, { type, payload }) => {
   switch (type) {
     case ACTIONS.ADD_DIGIT:
+      if(state.reload) return {...state, reload: false, operation: null, previousOperand: null}
       if (payload.digit === "0" && state.currentOperand === "0") return state;
       if (state.currentOperand === "0") {
         if (payload.digit === ".") {
@@ -40,9 +41,10 @@ const reducer = (state, { type, payload }) => {
       };
 
     case ACTIONS.CLEAR:
-      return { currentOperand: "0" };
+      return { currentOperand: "0", reload: false };
 
     case ACTIONS.CHOOSE_OPERATION:
+      if(state.reload) return {...state, reload: false, operation: payload.digit, previousOperand: null, currentOperand: "0"}
       if(state.previousOperand == null){
         return {
           ...state,
@@ -51,20 +53,26 @@ const reducer = (state, { type, payload }) => {
           currentOperand: "0"
         }
       }
+      if(state.previousOperand != null & state.operation != null){
+        return{
+          ...state,
+          operation: payload.operation
+        }
+      }
       return {
         ...state,
         previousOperand: evaluate(state),
       }
 
     case ACTIONS.DELETE_DIDIT:
+      if(state.reload) return {...state, reload: false, operation: null, previousOperand: null, currentOperand: "0"}
       if(state.overwrite){
-        console.log(state.overwrite)
         return{
           ...state,
           overwrite: false,
-          previousOperand: null
+          previousOperand: null,
+          operation: null
         }
-        
       }
 
       if(state.currentOperand === "0") return state;
@@ -76,6 +84,15 @@ const reducer = (state, { type, payload }) => {
       }
 
     case ACTIONS.EVALUATE:
+      if(state.reload) return {...state, reload: false, operation: null, previousOperand: null, currentOperand: "0"}
+      if(state.previousOperand == null) return state;
+      if(state.operation === '/' && state.currentOperand === "0"){
+        return{
+          ...state,
+          currentOperand: "Cannot divide by zero",
+          reload: true
+        }
+      }
       return{
         ...state,
         overwrite: true,
@@ -85,7 +102,6 @@ const reducer = (state, { type, payload }) => {
 };
 
 const evaluate = ({currentOperand, previousOperand, operation}) => {
-  console.log("run")
   const prev = parseFloat(previousOperand);
   const curr = parseFloat(currentOperand);
   if(isNaN(prev) || isNaN(curr)) return "";
