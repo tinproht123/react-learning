@@ -37,9 +37,30 @@
   margin-bottom: 15px;
   display: flex;
   justify-content: space-between;
-  width: 300px;
+  width: 200px;
+}
+.form-control > input {
+  width: 50px;
 }
 
 .mine {
   color: #000;
+}
+button {
+  border: none;
+  background-color: transparent;
+  padding: 0.75rem;
+  font-size: 14px;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-generate {
+  background-color: #198754;
+  margin-right: 1rem;
+}
+
+.btn-new-game {
+  background-color: #0d6efd;
 }
