@@ -14,6 +14,6 @@ All React exercises on KITS
 
 **3. React Minesweeper**
 - Simulation of Minesweeper game
-- _Bug: none, it's working properly_
+- _Bug: it's working fine, but the winner checker still got little bug_
 
 
