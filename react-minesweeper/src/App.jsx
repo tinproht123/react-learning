@@ -74,6 +74,7 @@ function App() {
     setBoard(result);
   };
 
+  //click the cell to reveal it, or horrible death!
   const handleClick = (row, col) => {
     if (gameOver || youWon) return;
     if (board[row][col].isRevaled) return;
@@ -90,6 +91,7 @@ function App() {
     setBoard(newBoard);
   };
 
+  //revale all non-mine cell nearby until hit the mine
   const revealNeighbor = (board, row, col) => {
     for (let i = -1; i <= 1; i++) {
       for (let j = -1; j <= 1; j++) {
@@ -116,6 +118,8 @@ function App() {
     }
   };
 
+  //reaveal all mine cells if you lose
+  //or you, it will show the flag instead the mine
   const revealMines = () => {
     board.map((row) =>
       row.map((cell) => {
@@ -123,12 +127,12 @@ function App() {
       })
     );
   };
+
+  //check if all non-mine cells is revaled => you won!
   function checkWin() {
     if (noneMineCell === 0) {
-      console.log("You won!");
       return true;
     }
-    console.log(false);
     return false;
   }
   return (
