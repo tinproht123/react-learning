@@ -32,6 +32,7 @@ function App() {
         isMine: false,
         isRevaled: false,
         neighborCount: 0,
+        isFlag: false,
       }))
     );
     //lane mines
@@ -74,20 +75,31 @@ function App() {
     setBoard(result);
   };
 
-  //click the cell to reveal it, or horrible death!
+  //click the cell to reveal it, or get a horrible death!
   const handleClick = (row, col) => {
     if (gameOver || youWon) return;
     if (board[row][col].isRevaled) return;
     const newBoard = [...board];
     newBoard[row][col].isRevaled = true;
-    setNonMineCell((prevState) => prevState - 1);
+    //fixed: check the cell.isMine? before check winner to prevent the player won the game even hit the mine
     if (newBoard[row][col].isMine) {
       setGameOver(true);
       revealMines();
     }
+    setNonMineCell((prevState) => prevState - 1);
     if (newBoard[row][col].neighborCount === 0) {
       revealNeighbor(newBoard, row, col);
     }
+    setBoard(newBoard);
+  };
+
+  //mark the cell when right click on it
+  const handleRightClick = (e, rowIdx, colIdx) => {
+    e.preventDefault();
+    const newBoard = [...board];
+    if (newBoard[rowIdx][colIdx].isFlag)
+      newBoard[rowIdx][colIdx].isFlag = false;
+    else newBoard[rowIdx][colIdx].isFlag = true;
     setBoard(newBoard);
   };
 
@@ -180,7 +192,12 @@ function App() {
           New game
         </button>
       )}
-      <Board board={board} handleClick={handleClick} youWon={youWon} />
+      <Board
+        board={board}
+        handleClick={handleClick}
+        handleRightClick={handleRightClick}
+        youWon={youWon}
+      />
     </div>
   );
 }

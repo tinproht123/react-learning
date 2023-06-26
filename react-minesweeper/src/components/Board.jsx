@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import Cell from "./Cell";
 
-const Board = ({ board, handleClick, youWon }) => {
+const Board = ({ board, handleClick, handleRightClick, youWon }) => {
   return (
     <div className="board">
       {board.map((row, rowIdx) => (
@@ -15,6 +15,7 @@ const Board = ({ board, handleClick, youWon }) => {
               rowIdx={rowIdx}
               colIdx={colIdx}
               handleClick={handleClick}
+              handleRightClick={handleRightClick}
             />
           ))}
         </div>
