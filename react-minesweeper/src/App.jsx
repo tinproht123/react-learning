@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Board from "./components/Board";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBomb } from "@fortawesome/free-solid-svg-icons";
+import { library } from "@fortawesome/fontawesome-svg-core";
 
 function App() {
   const [mineSize, setMineSize] = useState(5);
@@ -8,9 +11,22 @@ function App() {
   const [board, setBoard] = useState([]);
   const [gameOver, setGameOver] = useState(false);
   const [youWon, setYouWon] = useState(false);
+  const [noneMineCell, setNonMineCell] = useState();
+
+  library.add(faBomb);
+
+  useEffect(() => {
+    if (checkWin()) {
+      setYouWon(true);
+      revealMines();
+    }
+  }, [board]);
 
   const generateBoard = () => {
+    setYouWon(false);
+    setGameOver(false);
     //create board
+    setNonMineCell(Math.pow(boardSize, 2) - mineSize);
     let result = Array.from({ length: boardSize }, () =>
       Array.from({ length: boardSize }, () => ({
         isMine: false,
@@ -63,10 +79,7 @@ function App() {
     if (board[row][col].isRevaled) return;
     const newBoard = [...board];
     newBoard[row][col].isRevaled = true;
-    if (checkWin()) {
-      setYouWon(true);
-      console.log("You won!");
-    }
+    setNonMineCell((prevState) => prevState - 1);
     if (newBoard[row][col].isMine) {
       setGameOver(true);
       revealMines();
@@ -74,7 +87,6 @@ function App() {
     if (newBoard[row][col].neighborCount === 0) {
       revealNeighbor(newBoard, row, col);
     }
-
     setBoard(newBoard);
   };
 
@@ -94,6 +106,7 @@ function App() {
             !board[neighborRow][neighborCol].isRevaled
           ) {
             board[neighborRow][neighborCol].isRevaled = true;
+            setNonMineCell((prevState) => prevState - 1);
             if (board[neighborRow][neighborCol].neighborCount === 0) {
               revealNeighbor(board, neighborRow, neighborCol);
             }
@@ -111,18 +124,19 @@ function App() {
     );
   };
   function checkWin() {
-    for (let row = 0; row < board.length; row++) {
-      for (let col = 0; col < board.length; col++) {
-        const cell = board[row][col];
-        if (!cell.isMine && !cell.isRevealed) {
-          return false;
-        }
-      }
+    if (noneMineCell === 0) {
+      console.log("You won!");
+      return true;
     }
-    return true;
+    console.log(false);
+    return false;
   }
   return (
     <div className="container">
+      <h1 style={{ letterSpacing: "4px" }}>
+        <span style={{ color: "#0d6efd" }}>React</span> Minesweeper{" "}
+        <FontAwesomeIcon color="#dc3545" icon="fa-solid fa-bomb" />
+      </h1>
       <div className="form-control">
         <label htmlFor="">Number of mines:</label>
         <input
@@ -150,7 +164,7 @@ function App() {
       <button onClick={() => generateBoard()} className="btn-generate">
         Generate
       </button>
-      {gameOver && (
+      {(gameOver || youWon) && (
         <button
           onClick={() => {
             setGameOver(false);
