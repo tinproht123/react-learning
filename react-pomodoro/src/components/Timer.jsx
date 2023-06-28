@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { updateStatus } from "../store/task-slice";
+import { current } from "@reduxjs/toolkit";
+
+const STATUS = ["Pomodoro", "Short Break", "Long Break"];
 
 const Timer = () => {
   const dispatch = useDispatch();
@@ -10,6 +13,16 @@ const Timer = () => {
   const [shortBreakTime, setShortBreakTIme] = useState("01:00");
   const [longBreakTime, setLongBreakTime] = useState("15:00");
   const [currentTime, setCurrentTime] = useState(pomoTime);
+
+  var intervalId = null;
+
+  const changeStatus = (sta) => {
+    setIsRunning(false);
+    dispatch(updateStatus({ status: sta }));
+    if (sta === "Short Break") setCurrentTime(shortBreakTime);
+    else if (sta === "Long Break") setCurrentTime(longBreakTime);
+    else setCurrentTime(pomoTime);
+  };
 
   const countdown = () => {
     let arr = currentTime.split(":");
@@ -33,30 +46,28 @@ const Timer = () => {
     arr[0] = minutes.toString();
     arr[1] = seconds.toString();
     let newTimer = arr.join(":");
-    console.log(currentTime);
-    setCurrentTime((prev) => (prev === newTimer ? prev : newTimer));
+    setCurrentTime(newTimer);
   };
   useEffect(() => {
-    let intervalId = null;
     if (isRunning) {
       intervalId = setInterval(countdown, 1000);
     }
 
     return () => clearInterval(intervalId);
-  }, [isRunning]);
+  }, [isRunning, currentTime]);
   return (
     <div className="container">
       <div className="timer-container">
         <div className="btn-container">
-          <button className={`btn ${status === "Pomodoro" && "focus"}`}>
-            Pomodoro
-          </button>
-          <button className={`btn ${status === "Short Break" && "focus"}`}>
-            Short Break
-          </button>
-          <button className={`btn ${status === "Long Break" && "focus"}`}>
-            Long Break
-          </button>
+          {STATUS.map((sta) => (
+            <button
+              key={sta}
+              className={`btn ${status === sta && "focus"}`}
+              onClick={() => changeStatus(sta)}
+            >
+              {sta}
+            </button>
+          ))}
         </div>
         <div className="timer">{currentTime}</div>
         <button
