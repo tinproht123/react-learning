@@ -33,7 +33,6 @@ const reducer = (state, { type, payload }) => {
       if (payload.digit === "0" && state.currentOperand === "0") return state;
       if (state.currentOperand === "0") {
         if (payload.digit === ".") {
-          console.log("YES");
           return {
             ...state,
             currentOperand: `${state.currentOperand || ""}${payload.digit}`,
