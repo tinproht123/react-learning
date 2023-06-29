@@ -3,6 +3,10 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faCircleCheck,
   faEllipsisVertical,
+  faCirclePlus,
+  faCaretUp,
+  faCaretDown,
+  faForwardStep,
 } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "./components/Navbar";
 import Timer from "./components/Timer";
@@ -29,4 +33,11 @@ function App() {
 }
 
 export default App;
-library.add(faCircleCheck, faEllipsisVertical);
+library.add(
+  faCircleCheck,
+  faEllipsisVertical,
+  faCirclePlus,
+  faCaretUp,
+  faCaretDown,
+  faForwardStep
+);

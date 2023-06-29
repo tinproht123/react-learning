@@ -3,6 +3,7 @@
   --color-danger: rgb(186, 73, 73);
   --color-cyan: rgb(56, 133, 138);
   --color-blue: rgb(57, 112, 151);
+  --color-grey: #bbbbbb;
   --filter-white: rgba(255, 255, 255, 0.1);
   --filter-black: rgba(0, 0, 0, 0.15);
 }
@@ -19,6 +20,7 @@ body {
 }
 .App {
   min-height: 100vh;
+  transition: 0.5s ease-in-out all;
 }
 .red {
   background-color: var(--color-danger);
@@ -42,6 +44,7 @@ body {
   width: 95%;
   max-width: 650px;
   margin-inline: auto;
+  position: relative;
 }
 
 .navbar {
@@ -49,9 +52,23 @@ body {
   font-weight: 500;
 }
 
+.timer-progress-bar {
+  background: #fff;
+  height: 2px;
+  margin-inline: auto;
+  position: absolute;
+  bottom: 0;
+}
+
 .navbar > .container {
   border-bottom: 1px solid rgb(0, 0, 0, 0.2);
   padding: 16px 0;
+}
+
+.btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .timer-container {
@@ -84,7 +101,7 @@ body {
   margin-top: 16px;
 }
 
-.timer-container > .btn-start {
+.timer-container .btn-start {
   margin-top: 16px;
   cursor: pointer;
   font-size: 22px;
@@ -95,4 +112,199 @@ body {
   border: none;
   border-radius: 5px;
   box-shadow: rgb(235, 235, 235) 0px 6px 0px;
+}
+
+.task-container {
+  margin: 40px 60px;
+}
+
+.tasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.btn-tasks {
+  padding: 6px 14px;
+  background: var(--filter-white);
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  border-radius: 4px;
+}
+
+.tasks-body {
+  margin-top: 10px;
+}
+
+.task-item {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #000;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 14px;
+  color: var(--color-grey);
+  border-left: 5px solid #efefef;
+  margin-bottom: 8px;
+}
+.task-name {
+  color: #000;
+}
+
+.flex-start {
+  display: flex;
+  align-items: center;
+}
+
+.flex-end {
+  display: flex;
+  align-items: center;
+}
+.flex-end > .btn-tasks {
+  color: #999999;
+  border: 1px solid var(--color-grey);
+}
+
+.flex-end > .btn-tasks:hover {
+  background: #ddd;
+}
+
+.flex-end > p {
+  margin-right: 15px;
+  letter-spacing: 2px;
+}
+
+.flex-end > p > span {
+  font-size: 22px;
+}
+
+.btn-check {
+  font-size: 27px;
+  border: none;
+  color: #ddd;
+}
+
+.btn-add-task {
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+  border-radius: 6px;
+  width: 100%;
+  padding: 20px 0;
+  font-size: 16px;
+  background-color: var(--filter-black);
+  margin-top: 15px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: bold;
+}
+.btn-task-number {
+  margin-inline: 8px;
+  background: #fff;
+  padding: 10px 16px;
+}
+.timer-btn-container {
+  position: relative;
+}
+
+.btn-forward {
+  font-size: 35px;
+  color: #fff;
+  position: absolute;
+  top: 40%;
+  right: 100px;
+}
+
+.btn-save {
+  background-color: #222;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 18px;
+  border-radius: 4px;
+  margin-left: 20px;
+}
+
+.form-add-task {
+  background-color: #fff;
+  margin-top: 20px;
+  border-radius: 8px;
+  color: #222;
+}
+
+.form-body {
+  padding: 20px;
+}
+
+.task-input {
+  border: none;
+  font-size: 20px;
+  width: 100%;
+  padding: 8px;
+  font-weight: bold;
+  margin: 10px 0 15px;
+}
+
+.task-input:focus {
+  border: none;
+  outline: none;
+}
+
+.task-input::placeholder {
+  font-size: 20px;
+  font-style: italic;
+  color: var(--color-grey);
+}
+
+.btn-task-number {
+  border: 1px solid var(--color-grey);
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
+  color: rgba(0, 0, 0, 0.5);
+  margin: 0 0 0 5px;
+}
+.form-footer {
+  background-color: #efefef;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px 20px;
+}
+
+.btn-cancel {
+  color: #888;
+  font-weight: bold;
+}
+
+.btn-add-note {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 14px;
+  opacity: 0.9;
+  text-decoration: underline;
+  letter-spacing: 1px;
+}
+
+.input-task-number {
+  padding: 10px;
+  font-size: 18px;
+  background-color: #efefef;
+  margin: 10px 10px 0 0;
+  width: 75px;
+  border: none;
+}
+
+.input-task-number:focus {
+  outline: none;
+}
+.checked {
+  color: #ba4949;
+}
+.cross-line {
+  text-decoration: line-through;
+  color: #bbb;
+}
+.task-running {
+  border-left-color: #222;
 }
