@@ -28,6 +28,9 @@ const taskSlice = createSlice({
     saveNewTask(state, action) {
       state.tasks.push(action.payload.newTask);
     },
+    deleteTask(state, action) {
+      state.tasks = state.tasks.filter((task) => task.id !== action.payload.id);
+    },
     updateTask(state, action) {
       const checkTask = state.tasks.find(
         (item) => item.id === action.payload.id
@@ -52,4 +55,5 @@ export const {
   saveNewTask,
   updateTask,
   runTask,
+  deleteTask,
 } = taskSlice.actions;

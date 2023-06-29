@@ -9,6 +9,7 @@ const TaskList = () => {
   const [showTaskForm, setShowTaskForm] = useState(false);
   const [taskName, setTaskName] = useState("");
   const [taskNumber, setTaskNumber] = useState(1);
+  const [showOptions, setShowOptions] = useState(false);
 
   const tasks = useSelector((state) => state.task.tasks);
   const dispatch = useDispatch();
@@ -27,6 +28,8 @@ const TaskList = () => {
     console.log(newTask);
     dispatch(saveNewTask({ newTask }));
     setShowTaskForm(false);
+    setTaskName("");
+    setTaskNumber(1);
   };
 
   return (
@@ -35,9 +38,21 @@ const TaskList = () => {
         <div className="tasks-list">
           <div className="tasks-header">
             <p>Tasks</p>
-            <button className="btn btn-tasks">
-              <FontAwesomeIcon icon="fa-solid fa-ellipsis-vertical" />
-            </button>
+            <div style={{ position: "relative ", border: "1px solid green" }}>
+              <button className="btn btn-tasks">
+                <FontAwesomeIcon icon="fa-solid fa-ellipsis-vertical" />
+              </button>
+              <div className="tasks-options">
+                <div>
+                  <FontAwesomeIcon icon="fa-regular fa-trash-can" /> Clear
+                  finished tasks
+                </div>
+                <div>
+                  <FontAwesomeIcon icon="fa-regular fa-trash-can" /> Clear all
+                  tasks
+                </div>
+              </div>
+            </div>
           </div>
           <hr />
           <div className="tasks-body">

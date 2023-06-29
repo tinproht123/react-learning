@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
-import { runTask, updateTask } from "../store/task-slice";
+import { deleteTask, runTask, updateTask } from "../store/task-slice";
 import { useState } from "react";
 
 const TaskItem = (props) => {
@@ -15,6 +15,10 @@ const TaskItem = (props) => {
   const checkItem = () => {
     const updatedTask = { ...props, finished: !finished };
     dispatch(updateTask({ updatedTask }));
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteTask({ id }));
   };
 
   const saveTask = () => {
@@ -118,15 +122,20 @@ const TaskItem = (props) => {
             <button className="btn btn-add-note">+ Add Note</button>
           </div>
           <div className="form-footer">
-            <button
-              className="btn btn-cancel"
-              onClick={() => setIsEditing(false)}
-            >
-              Cancel
+            <button className="btn btn-delete" onClick={() => handleDelete(id)}>
+              Delete
             </button>
-            <button className="btn btn-save" onClick={() => saveTask()}>
-              Save
-            </button>
+            <div>
+              <button
+                className="btn btn-cancel"
+                onClick={() => setIsEditing(false)}
+              >
+                Cancel
+              </button>
+              <button className="btn btn-save" onClick={() => saveTask()}>
+                Save
+              </button>
+            </div>
           </div>
         </div>
       )}

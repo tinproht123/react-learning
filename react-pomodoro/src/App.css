@@ -21,6 +21,7 @@ body {
 .App {
   min-height: 100vh;
   transition: 0.5s ease-in-out all;
+  padding-bottom: 30px;
 }
 .red {
   background-color: var(--color-danger);
@@ -269,7 +270,7 @@ body {
   border-bottom-right-radius: 8px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 10px 20px;
 }
 
@@ -307,4 +308,45 @@ body {
 }
 .task-running {
   border-left-color: #222;
+}
+
+.task-order-container {
+  margin: 0px 60px;
+  text-align: center;
+}
+
+.task-order {
+  opacity: 0.6;
+  margin-bottom: 8px;
+}
+.task-order-name {
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.btn-delete {
+  font-weight: bold;
+  color: #888;
+}
+
+.tasks-options {
+  position: absolute;
+  background: #fff;
+  color: #000;
+  top: 40px;
+  right: 0;
+  padding: 8px 0;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 20px, rgba(0, 0, 0, 0.1) 0px 3px 6px;
+  z-index: 1;
+  width: 210px;
+  font-weight: 300;
+}
+.tasks-options > div {
+  cursor: pointer;
+  padding: 8px;
+}
+
+.tasks-options > div:hover {
+  background: #efefef;
 }

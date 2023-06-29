@@ -8,6 +8,7 @@ import {
   faCaretDown,
   faForwardStep,
 } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import Navbar from "./components/Navbar";
 import Timer from "./components/Timer";
 import TaskList from "./components/TaskList";
@@ -39,5 +40,6 @@ library.add(
   faCirclePlus,
   faCaretUp,
   faCaretDown,
-  faForwardStep
+  faForwardStep,
+  faTrashCan
 );

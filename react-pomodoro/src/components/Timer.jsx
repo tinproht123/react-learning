@@ -1,19 +1,28 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { updateProgress, updateStatus } from "../store/task-slice";
+import { updateProgress, updateStatus, updateTask } from "../store/task-slice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const STATUS = ["Pomodoro", "Short Break", "Long Break"];
 
 const Timer = () => {
   const dispatch = useDispatch();
-  const { taskOrder, status, progress } = useSelector((state) => state.task);
+  const { taskOrder, status, progress, tasks } = useSelector(
+    (state) => state.task
+  );
   const [isRunning, setIsRunning] = useState(false);
   const [pomoTime, setPomoTime] = useState("25:00");
   const [shortBreakTime, setShortBreakTIme] = useState("01:00");
   const [longBreakTime, setLongBreakTime] = useState("15:00");
   const [currentTime, setCurrentTime] = useState(pomoTime);
   const [totalProgress, setTotalProgress] = useState(0);
+  const [runningTask, setRunningTask] = useState({});
+
+  const getTask = () => {
+    tasks.map((task) => {
+      if (task.isRunning) setRunningTask(task);
+    });
+  };
 
   const setProgress = (currTime) => {
     let arr = currTime.split(":");
@@ -69,6 +78,15 @@ const Timer = () => {
         setProgress(shortBreakTime);
         countProgress();
         dispatch(updateProgress({ progress: 0 }));
+        dispatch(
+          updateTask({
+            id: runningTask.id,
+            updatedTask: {
+              ...runningTask,
+              finishedPomos: runningTask.finishedPomos + 1,
+            },
+          })
+        );
         return;
       } else if (status === "Short Break" || status === "Long Break") {
         dispatch(updateStatus({ status: "Pomodoro" }));
@@ -99,6 +117,11 @@ const Timer = () => {
 
     return () => clearInterval(intervalId);
   }, [isRunning, currentTime]);
+
+  useEffect(() => {
+    getTask();
+  }, [tasks]);
+
   return (
     <div className="container">
       <div className="timer-container">
@@ -133,6 +156,10 @@ const Timer = () => {
             </button>
           )}
         </div>
+      </div>
+      <div className="task-order-container">
+        <p className="task-order">#{taskOrder}</p>
+        <p className="task-order-name">{runningTask.name}</p>
       </div>
     </div>
   );
