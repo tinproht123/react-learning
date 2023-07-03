@@ -3,7 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TaskItem from "./TaskItem";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { saveNewTask } from "../store/task-slice";
+import {
+  deleteAllTask,
+  deleteFinishedTasks,
+  saveNewTask,
+} from "../store/task-slice";
 
 const TaskList = () => {
   const [showTaskForm, setShowTaskForm] = useState(false);
@@ -38,20 +42,33 @@ const TaskList = () => {
         <div className="tasks-list">
           <div className="tasks-header">
             <p>Tasks</p>
-            <div style={{ position: "relative ", border: "1px solid green" }}>
-              <button className="btn btn-tasks">
+            <div style={{ position: "relative" }}>
+              <button
+                className="btn btn-tasks"
+                onClick={() => setShowOptions((prev) => !prev)}
+              >
                 <FontAwesomeIcon icon="fa-solid fa-ellipsis-vertical" />
               </button>
-              <div className="tasks-options">
-                <div>
-                  <FontAwesomeIcon icon="fa-regular fa-trash-can" /> Clear
-                  finished tasks
+              {showOptions && (
+                <div className="tasks-options">
+                  <div
+                    onClick={() => {
+                      dispatch(deleteFinishedTasks());
+                    }}
+                  >
+                    <FontAwesomeIcon icon="fa-regular fa-trash-can" /> Clear
+                    finished tasks
+                  </div>
+                  <div
+                    onClick={() => {
+                      dispatch(deleteAllTask());
+                    }}
+                  >
+                    <FontAwesomeIcon icon="fa-regular fa-trash-can" /> Clear all
+                    tasks
+                  </div>
                 </div>
-                <div>
-                  <FontAwesomeIcon icon="fa-regular fa-trash-can" /> Clear all
-                  tasks
-                </div>
-              </div>
+              )}
             </div>
           </div>
           <hr />
@@ -85,6 +102,7 @@ const TaskList = () => {
                 placeholder="What are you working on?"
                 value={taskName}
                 onChange={(e) => setTaskName(e.target.value)}
+                autoFocus
               />
               <p style={{ fontWeight: "bold" }}>Est Pomodoros</p>
               <div>

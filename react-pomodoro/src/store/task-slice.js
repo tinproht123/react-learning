@@ -31,6 +31,12 @@ const taskSlice = createSlice({
     deleteTask(state, action) {
       state.tasks = state.tasks.filter((task) => task.id !== action.payload.id);
     },
+    deleteAllTask(state) {
+      state.tasks = [];
+    },
+    deleteFinishedTasks(state) {
+      state.tasks = state.tasks.filter((task) => task.finished === false);
+    },
     updateTask(state, action) {
       const checkTask = state.tasks.find(
         (item) => item.id === action.payload.id
@@ -56,4 +62,6 @@ export const {
   updateTask,
   runTask,
   deleteTask,
+  deleteAllTask,
+  deleteFinishedTasks,
 } = taskSlice.actions;

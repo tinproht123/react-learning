@@ -12,9 +12,10 @@ const TaskItem = (props) => {
   const [totalNumber, setTotalNumber] = useState(totalPomos);
   const [taskName, setTaskName] = useState(name);
 
-  const checkItem = () => {
+  const checkItem = (e) => {
+    e.stopPropagation();
     const updatedTask = { ...props, finished: !finished };
-    dispatch(updateTask({ updatedTask }));
+    dispatch(updateTask({ updatedTask, id }));
   };
 
   const handleDelete = () => {
@@ -32,7 +33,8 @@ const TaskItem = (props) => {
     setIsEditing(false);
   };
 
-  const chooseRunTask = () => {
+  const chooseRunTask = (e) => {
+    e.stopPropagation();
     if (isRunning === true) return;
     dispatch(runTask({ id }));
   };
@@ -42,12 +44,12 @@ const TaskItem = (props) => {
       {!isEditing && (
         <div
           className={`task-item ${isRunning && "task-running"}`}
-          onClick={() => chooseRunTask()}
+          onClick={(e) => chooseRunTask(e)}
         >
           <div className="flex-start">
             <button
               className={`btn btn-check ${finished && "checked"}`}
-              onClick={() => checkItem()}
+              onClick={(e) => checkItem(e)}
             >
               <FontAwesomeIcon icon="fa-solid fa-circle-check" />
             </button>
@@ -84,6 +86,7 @@ const TaskItem = (props) => {
               placeholder="What are you working on?"
               value={taskName}
               onChange={(e) => setTaskName(e.target.value)}
+              autoFocus
             />
             <p style={{ fontWeight: "bold" }}>Act/Est Pomodoros</p>
             <div>
