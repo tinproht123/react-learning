@@ -1,0 +1,60 @@
+.board {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  background-color: #87cefa;
+  color: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  font-weight: bold;
+  margin: 2px;
+  font-size: 18px;
+  border: 1px solid black;
+}
+
+.cell-white {
+  background-color: #c0bcbc;
+}
+
+.form-control {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
+.form-control > input {
+  width: 50px;
+}
+
+.mine {
+  color: #000;
+}
+button {
+  border: none;
+  background-color: transparent;
+  padding: 0.75rem;
+  font-size: 14px;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-generate {
+  background-color: #198754;
+  margin-right: 1rem;
+}
+
+.btn-new-game {
+  background-color: #0d6efd;
+}
