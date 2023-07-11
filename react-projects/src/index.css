@@ -10,7 +10,22 @@ body {
 
 .header {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
   color: #fff;
+  padding: 0 20px !important;
+}
+
+.dark {
+  background-color: #001529 !important;
+  color: #fff !important;
+}
+
+.light {
+  background-color: #fff;
+  color: #222;
+}
+
+.btn-dark {
+  color: #fff !important;
+  background: transparent;
 }

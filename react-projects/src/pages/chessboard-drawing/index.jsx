@@ -38,7 +38,17 @@ function index() {
           value={size}
           onChange={(e) => setSize(e.target.value)}
         />
-        <button onClick={generateChess}>Draw</button>
+        <button
+          style={{
+            color: "#000",
+            border: "1px solid black",
+            padding: "5px 12px",
+            marginLeft: "20px",
+          }}
+          onClick={generateChess}
+        >
+          Draw
+        </button>
       </div>
       <div>
         <div style={{ marginBottom: "5px" }}>
