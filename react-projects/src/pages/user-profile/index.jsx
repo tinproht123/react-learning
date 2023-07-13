@@ -241,7 +241,7 @@ const UserProfile = () => {
                   CONTACT INFORMATION
                 </h4>
                 <Row style={{ marginBottom: "10px" }}>
-                  <Col span={2}>
+                  <Col span={4}>
                     <p
                       style={{
                         fontWeight: "bold",
@@ -252,7 +252,7 @@ const UserProfile = () => {
                       Phone:
                     </p>
                   </Col>
-                  <Col span={22}>
+                  <Col span={20}>
                     <p
                       style={{
                         fontWeight: "bold",
@@ -266,7 +266,7 @@ const UserProfile = () => {
                   </Col>
                 </Row>
                 <Row style={{ marginBottom: "10px" }}>
-                  <Col span={2}>
+                  <Col span={4}>
                     <p
                       style={{
                         fontWeight: "bold",
@@ -277,7 +277,7 @@ const UserProfile = () => {
                       Address:
                     </p>
                   </Col>
-                  <Col span={22}>
+                  <Col span={20}>
                     <p
                       style={{
                         fontWeight: "bold",
@@ -290,7 +290,7 @@ const UserProfile = () => {
                   </Col>
                 </Row>
                 <Row style={{ marginBottom: "10px" }}>
-                  <Col span={2}>
+                  <Col span={4}>
                     <p
                       style={{
                         fontWeight: "bold",
@@ -301,7 +301,7 @@ const UserProfile = () => {
                       Email
                     </p>
                   </Col>
-                  <Col span={22}>
+                  <Col span={20}>
                     <p
                       style={{
                         fontWeight: "bold",
@@ -317,7 +317,7 @@ const UserProfile = () => {
                   </Col>
                 </Row>
                 <Row style={{ marginBottom: "10px" }}>
-                  <Col span={2}>
+                  <Col span={4}>
                     <p
                       style={{
                         fontWeight: "bold",
@@ -328,7 +328,7 @@ const UserProfile = () => {
                       Site
                     </p>
                   </Col>
-                  <Col span={22}>
+                  <Col span={20}>
                     <p
                       style={{
                         color: "#2196f3",
@@ -358,7 +358,7 @@ const UserProfile = () => {
                   BASIC INFORMATION
                 </h4>
                 <Row style={{ marginBottom: "10px" }}>
-                  <Col span={2}>
+                  <Col span={4}>
                     <p
                       style={{
                         fontWeight: "bold",
@@ -369,7 +369,7 @@ const UserProfile = () => {
                       Birthday:
                     </p>
                   </Col>
-                  <Col span={22}>
+                  <Col span={20}>
                     <p
                       style={{
                         fontWeight: "bold",
@@ -382,7 +382,7 @@ const UserProfile = () => {
                   </Col>
                 </Row>
                 <Row style={{ marginBottom: "10px" }}>
-                  <Col span={2}>
+                  <Col span={4}>
                     <p
                       style={{
                         fontWeight: "bold",
@@ -393,7 +393,7 @@ const UserProfile = () => {
                       Gender:
                     </p>
                   </Col>
-                  <Col span={22}>
+                  <Col span={20}>
                     <p
                       style={{
                         fontWeight: "bold",
@@ -403,6 +403,132 @@ const UserProfile = () => {
                     >
                       Male
                     </p>
+                  </Col>
+                </Row>
+              </div>
+              <div style={{ marginBottom: "30px" }}>
+                <h4
+                  style={{
+                    color: "#555",
+                    marginBottom: "20px",
+                    fontSize: "16px",
+                    letterSpacing: "2px",
+                  }}
+                >
+                  SKILLS
+                </h4>
+                <Row style={{ marginBottom: "10px" }}>
+                  <Col span={4}>
+                    <p
+                      style={{
+                        fontWeight: "bold",
+                        letterSpacing: "1px",
+                        fontSize: "16px",
+                      }}
+                    >
+                      Programing Languages:
+                    </p>
+                  </Col>
+                  <Col span={20}>
+                    <ul
+                      style={{
+                        fontWeight: "bold",
+                        letterSpacing: "1px",
+                        fontSize: "16px",
+                        listStyleType: "none",
+                      }}
+                    >
+                      <li>- Java</li>
+                      <li>- C#</li>
+                      <li>- Javascript/Typescript</li>
+                      <li>- Python</li>
+                    </ul>
+                  </Col>
+                </Row>
+                <Row style={{ marginBottom: "10px" }}>
+                  <Col span={4}>
+                    <p
+                      style={{
+                        fontWeight: "bold",
+                        letterSpacing: "1px",
+                        fontSize: "16px",
+                      }}
+                    >
+                      Web Design:
+                    </p>
+                  </Col>
+                  <Col span={20}>
+                    <ul
+                      style={{
+                        fontWeight: "bold",
+                        letterSpacing: "1px",
+                        fontSize: "16px",
+                        listStyleType: "none",
+                      }}
+                    >
+                      <li>- Sass</li>
+                      <li>- ReactJs</li>
+                      <li>- Redux, React Router</li>
+                      <li>- Material UI, Ant-Design</li>
+                    </ul>
+                  </Col>
+                </Row>
+                <Row style={{ marginBottom: "10px" }}>
+                  <Col span={4}>
+                    <p
+                      style={{
+                        fontWeight: "bold",
+                        letterSpacing: "1px",
+                        fontSize: "16px",
+                      }}
+                    >
+                      Back-end:
+                    </p>
+                  </Col>
+                  <Col span={20}>
+                    <ul
+                      style={{
+                        fontWeight: "bold",
+                        letterSpacing: "1px",
+                        fontSize: "16px",
+                        listStyleType: "none",
+                      }}
+                    >
+                      <li>- RESTFUL API Design</li>
+                      <li>- Database Design</li>
+                      <li>- MS Sql Server, MySql</li>
+                      <li>- Spring Boot, Django, NodeJs/ExpressJs</li>
+                      <li>- Spring Security, JWT, OAuth2</li>
+                    </ul>
+                  </Col>
+                </Row>
+                <Row style={{ marginBottom: "10px" }}>
+                  <Col span={4}>
+                    <p
+                      style={{
+                        fontWeight: "bold",
+                        letterSpacing: "1px",
+                        fontSize: "16px",
+                      }}
+                    >
+                      Soft Skills:
+                    </p>
+                  </Col>
+                  <Col span={20}>
+                    <ul
+                      style={{
+                        fontWeight: "bold",
+                        letterSpacing: "1px",
+                        fontSize: "16px",
+                        listStyleType: "none",
+                      }}
+                    >
+                      <li>- English (Intermediate)</li>
+                      <li>- Git</li>
+                      <li>- Figma</li>
+                      <li>- Hosting</li>
+                      <li>- Data Structure & Algorithms</li>
+                    </ul>
                   </Col>
                 </Row>
               </div>
