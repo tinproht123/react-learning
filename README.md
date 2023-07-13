@@ -16,4 +16,11 @@ All React exercises on KITS
 - Simulation of Minesweeper game
 - _Bug: it's working fine, but the winner checker still got little bug_
 
+**4. React Podoro**
+- A simple clone of Pomodoro app
+- _Bug: it's working fine, but the settings is not avaible
 
+**5. React Projects**
+- A Dashboard contains 4 projects above
+- Design using Ant-Design
+- _Bug: it's working fine, but the UI still not at best
