@@ -184,33 +184,7 @@ const UserProfile = () => {
           >
             Web Developer
           </h3>
-          <div style={{ marginTop: "40px" }}>
-            <Divider
-              orientation="left"
-              orientationMargin="0"
-              style={{ borderBlockColor: "#ccc" }}
-            >
-              <p
-                style={{
-                  color: "#999",
-                  fontWeight: "bold",
-                  letterSpacing: "2px",
-                  fontSize: "18px",
-                }}
-              >
-                Rankings
-              </p>
-            </Divider>
-            <Space style={{ display: "flex", alignItems: "center" }}>
-              <p style={{ fontSize: "24px", fontWeight: "bold" }}>8.6</p>
-              <Rate
-                allowHalf
-                disabled
-                defaultValue={4.5}
-                style={{ color: "#2196f3" }}
-              />
-            </Space>
-          </div>
+
           <div style={{ marginTop: "40px" }}>
             <Divider
               orientation="left"
